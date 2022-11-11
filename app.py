@@ -49,7 +49,7 @@ def Open_Browser(titleL):       # Linkedin Page Scraping
     password_block.send_keys(password)
     password_block.send_keys(Keys.ENTER)
     sleep(2)
-    pyautogui.confirm(text='Press Ok After Clearing the Captcha', title='Security Check Control', buttons=['OK'])
+    pyautogui.confirm(text='Press Ok After Clearing the Captcha', title='Security Check Control', buttons=['OK'])       # To Wait until The user enters the captcha and Press OK the Programm will not Execute Further.
     sleep(2)
     
     for i in range(len(titleL)):        # To Search for the job For all the listed Job Title present in Title list
@@ -94,22 +94,26 @@ def Open_Browser(titleL):       # Linkedin Page Scraping
 
         for i in range(len(company)):
             About_dict = {}
-            driver.get(company[i])
+            driver.get(company[i])          # TO Open The Company Linkedin Profile Page Stored in the Company list
             sleep(2)
             
+            # Searching For the About Button And Opening The About Page of The Respective Company
             aboutBtn = driver.find_element(By.XPATH, '/html/body/div[5]/div[3]/div/div[2]/div/div[2]/main/div[2]/div/div[1]/section/footer')
             aboutBtn.click()
             sleep(2)
             
+            # Searching for the Description Box of the Company and Adding it to the Dictionary
             detail_box = driver.find_element(By.XPATH, '/html/body/div[5]/div[3]/div/div[2]/div/div[2]/main/div[2]/div/div/div[1]/section/p').text
             About_dict['description'] = detail_box
             sleep(2)
             
+            # Searching For the Number Of Employees Currently Working for them and Adding it To the Dictionary
             Employee_box = driver.find_element(By.XPATH, '/html/body/div[5]/div[3]/div/div[2]/div/div[2]/main/div[2]/div/div/div[1]/section/dl/dd[3]').text
             # print(Employee_box)
             About_dict['no Employees'] = Employee_box
             sleep(2)
             
+            # Searching for the Comapny Headquater Location And Adding it to the Dictionary
             Comp_Location = driver.find_element(By.XPATH, '/html/body/div[5]/div[3]/div/div[2]/div/div[2]/main/div[2]/div/div/div[1]/section/dl/dd[5]').text
             # print(Comp_Location)
             About_dict["headquater"] = Comp_Location
