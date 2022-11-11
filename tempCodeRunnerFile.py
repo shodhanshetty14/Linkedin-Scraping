@@ -1,3 +1,1 @@
-
-            # if count == 3:
-            #     break
+len(company)
